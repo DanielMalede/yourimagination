@@ -8,10 +8,11 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/posts", postRouter);
-app.use("/dalle", dalleRouter);
+app.use("/api/v1/dalle", dalleRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello from the server!");
